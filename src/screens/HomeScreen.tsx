@@ -1,5 +1,4 @@
 import React from 'react';
-// import Icon from 'react-native-vector-icons/Ionicons';
 import { FlatList, View } from 'react-native';
 import { styles } from '../theme/appTheme';
 import { FlatListMenuItem } from '../components/FlatListMenuItem';
