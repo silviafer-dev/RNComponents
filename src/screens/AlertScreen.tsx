@@ -1,7 +1,7 @@
 import React from 'react';
 import { Alert, Button, View } from 'react-native';
 import prompt from 'react-native-prompt-android';
-import { HeaderTitle } from './HeaderTitle';
+import { HeaderTitle } from '../components/HeaderTitle';
 import { styles } from '../theme/appTheme';
 
 export const AlertScreen = () => {
@@ -23,7 +23,7 @@ export const AlertScreen = () => {
       },
     );
 
-  const showPromt = () => {
+  const showPrompt = () => {
     prompt(
       'Enter password',
       'Enter your password to claim your $1.5B in lottery winnings',
@@ -61,7 +61,7 @@ export const AlertScreen = () => {
       <HeaderTitle title="Alerts" />
       <Button title="Show Alert" onPress={showAlert} />
       <View style={{ height: 10 }} />
-      <Button title="Show Prompt" onPress={showPromt} />
+      <Button title="Show Prompt" onPress={showPrompt} />
     </View>
   );
 };
