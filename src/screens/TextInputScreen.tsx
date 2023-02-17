@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   // KeyboardAvoidingView,
   StyleSheet,
@@ -7,23 +7,25 @@ import {
   Keyboard,
   ScrollView,
   TouchableWithoutFeedback,
+  Text,
 } from 'react-native';
+import { CustomSwitch } from '../components/CustomSwitch';
 
 import { HeaderTitle } from '../components/HeaderTitle';
+import { useForm } from '../hooks/useForm';
 import { styles } from '../theme/appTheme';
-// import { Platform } from 'react-native';
+// import { Platform, Text, Button } from 'react-native';
 
 export const TextInputScreen = () => {
-  const [form, setForm] = useState({
+  const { onChange, form, isSubscribed } = useForm({
     name: '',
     email: '',
     phone: '',
+    isSubscribed: false,
   });
-  const onChange = (value: string, field: string) => {
-    setForm({ ...form, [field]: value });
-  };
 
   return (
+    //? KeyboardAvoidingView ya no es necesario, scrollView maneja bien el formulario
     // <KeyboardAvoidingView
     //   behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
     <ScrollView>
@@ -36,10 +38,7 @@ export const TextInputScreen = () => {
             placeholder="name"
             autoCapitalize="words"
           />
-          <HeaderTitle title={JSON.stringify(form, null, 3)} />
-          <HeaderTitle title={JSON.stringify(form, null, 3)} />
 
-          <HeaderTitle title={JSON.stringify(form, null, 3)} />
           <TextInput
             style={stylesScreen.inputStyle}
             onChangeText={value => onChange(value, 'email')}
@@ -54,7 +53,16 @@ export const TextInputScreen = () => {
             placeholder="phone"
             keyboardType="number-pad"
           />
+          <View style={stylesScreen.switchRow}>
+            <Text style={stylesScreen.switchText}> Subscribe</Text>
+            <CustomSwitch
+              isOn={isSubscribed}
+              onChange={value => onChange(value, 'isSubscribed')}
+            />
+          </View>
+
           <View style={{ height: 100 }} />
+          <Text>{JSON.stringify(form, null, 4)}</Text>
         </View>
       </TouchableWithoutFeedback>
     </ScrollView>
@@ -69,5 +77,14 @@ const stylesScreen = StyleSheet.create({
     paddingHorizontal: 10,
     borderRadius: 10,
     marginVertical: 10,
+  },
+  switchRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginVertical: 10,
+  },
+  switchText: {
+    fontSize: 25,
   },
 });
