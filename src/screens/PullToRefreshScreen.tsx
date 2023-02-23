@@ -27,7 +27,7 @@ export const PullToRefreshScreen = () => {
         <RefreshControl
           refreshing={isRefreshing}
           onRefresh={onRefresh}
-          progressViewOffset={150} //works only in android
+          progressViewOffset={150} //works in android and ios
           progressBackgroundColor="lightblue" //background spinner android
           colors={['white', 'red', 'orange']} // spinner colors android
           style={{ backgroundColor: 'lightblue' }} //ios
