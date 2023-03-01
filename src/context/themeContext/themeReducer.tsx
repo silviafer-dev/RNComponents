@@ -7,13 +7,14 @@ export interface ThemeState extends Theme {
   dividerColor: string;
 }
 
-const lightTheme: ThemeState = {
+//! interacción con el mundo exterior no necesaria
+export const lightTheme: ThemeState = {
   currentTheme: 'light',
   dark: false,
   dividerColor: 'rgba(0,0,0,0.7)',
   colors: {
     primary: 'red',
-    background: 'blue',
+    background: 'white',
     card: 'green',
     text: 'pink',
     border: 'orange',
@@ -28,6 +29,19 @@ export const themeReducer = (
   switch (action.type) {
     case 'light_theme':
       return { ...lightTheme };
+    //   return {   //! Realmente el reducer no tiene que existir en el mundo
+    //     currentTheme: 'light',    //! exterior y deberia pasarse directamente así
+    //     dark: false,
+    //     dividerColor: 'rgba(0,0,0,0.7)',
+    //     colors: {
+    //       primary: 'red',
+    //       background: 'blue',
+    //       card: 'green',
+    //       text: 'pink',
+    //       border: 'orange',
+    //       notification: 'teal',
+    //     },
+    //   };
 
     default:
       return state;
