@@ -12,7 +12,7 @@ interface Props {
 
 export const FlatListMenuItem = ({ menuItem }: Props) => {
   const navigation = useNavigation();
-  const { colors } = useTheme();
+  // const { colors } = useTheme();
 
   return (
     <TouchableOpacity
@@ -23,7 +23,7 @@ export const FlatListMenuItem = ({ menuItem }: Props) => {
         <Text
           style={{
             ...styles.itemText,
-            color: colors.text,
+            // color: colors.text
           }}>
           {menuItem.name}
         </Text>
