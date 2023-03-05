@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   // KeyboardAvoidingView,
   StyleSheet,
@@ -12,6 +12,7 @@ import {
 import { CustomSwitch } from '../components/CustomSwitch';
 
 import { HeaderTitle } from '../components/HeaderTitle';
+import { ThemeContext } from '../context/themeContext/ThemeContext';
 import { useForm } from '../hooks/useForm';
 import { styles } from '../theme/appTheme';
 // import { Platform, Text, Button } from 'react-native';
@@ -23,6 +24,9 @@ export const TextInputScreen = () => {
     phone: '',
     isSubscribed: false,
   });
+  const {
+    theme: { colors, dividerColor },
+  } = useContext(ThemeContext);
 
   return (
     //? KeyboardAvoidingView ya no es necesario, scrollView maneja bien el formulario
@@ -33,28 +37,45 @@ export const TextInputScreen = () => {
         <View style={styles.globalMargin}>
           <HeaderTitle title="Text Input" />
           <TextInput
-            style={stylesScreen.inputStyle}
+            style={{
+              ...stylesScreen.inputStyle,
+              color: colors.text,
+              borderColor: dividerColor,
+            }}
             onChangeText={value => onChange(value, 'name')}
             placeholder="name"
             autoCapitalize="words"
+            placeholderTextColor={colors.notification}
           />
 
           <TextInput
-            style={stylesScreen.inputStyle}
+            style={{
+              ...stylesScreen.inputStyle,
+              color: colors.text,
+              borderColor: dividerColor,
+            }}
             onChangeText={value => onChange(value, 'email')}
             autoCorrect={false}
             placeholder="email"
             autoCapitalize="none"
             keyboardType="email-address"
+            placeholderTextColor={colors.notification}
           />
           <TextInput
-            style={stylesScreen.inputStyle}
+            style={{
+              ...stylesScreen.inputStyle,
+              color: colors.text,
+              borderColor: dividerColor,
+            }}
             onChangeText={value => onChange(value, 'phone')}
             placeholder="phone"
             keyboardType="number-pad"
+            placeholderTextColor={colors.notification}
           />
           <View style={stylesScreen.switchRow}>
-            <Text style={stylesScreen.switchText}> Subscribe</Text>
+            <Text style={{ ...stylesScreen.switchText, color: colors.text }}>
+              Subscribe
+            </Text>
             <CustomSwitch
               isOn={isSubscribed}
               onChange={value => onChange(value, 'isSubscribed')}
@@ -62,7 +83,9 @@ export const TextInputScreen = () => {
           </View>
 
           <View style={{ height: 100 }} />
-          <Text>{JSON.stringify(form, null, 4)}</Text>
+          <Text style={{ color: colors.text }}>
+            {JSON.stringify(form, null, 4)}
+          </Text>
         </View>
       </TouchableWithoutFeedback>
     </ScrollView>
@@ -72,7 +95,6 @@ export const TextInputScreen = () => {
 const stylesScreen = StyleSheet.create({
   inputStyle: {
     borderWidth: 1,
-    borderColor: 'rgba(0,0,0,0.3)',
     height: 50,
     paddingHorizontal: 10,
     borderRadius: 10,
